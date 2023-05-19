@@ -21,14 +21,15 @@ class AppDataBase:
 
     def addUser(self, name, email, hpsw):
         try:
-            self.__cur.execute("SELECT COUNT() as `count` FROM users WHERE email LIKE ?", (email))
+            print(name, email, hpsw)
+            self.__cur.execute("SELECT COUNT() as `count` FROM users WHERE email LIKE ?", [email])
             res = self.__cur.fetchone()
             if res['count'] > 0:
                 print("Пользователь с таким email уже существует")
                 return False
 
             tm = math.floor(time.time())
-            self.__cur.execute("INSERT INTO users VALUES(NULL, ?, ?, ?, ?)", (name, email, hpsw, tm))
+            self.__cur.execute("INSERT INTO users VALUES(NULL, ?, ?, ?, ?)", [name, email, hpsw, tm])
             self.__db.commit()
         except sqlite3.Error as e:
             print("Ошибка добавления пользователя в БД "+str(e))
@@ -38,7 +39,7 @@ class AppDataBase:
 
     def getUser(self, user_id):
         try:
-            self.__cur.execute("SELECT * FROM users WHERE id = ? LIMIT 1", (user_id))
+            self.__cur.execute("SELECT * FROM users WHERE id = ? LIMIT 1", [user_id])
             res = self.__cur.fetchone()
             if not res:
                 print("Пользователь не найден")
@@ -52,7 +53,7 @@ class AppDataBase:
 
     def getUserByEmail(self, email):
         try:
-            self.__cur.execute("SELECT * FROM users WHERE email = ? LIMIT 1", (email))
+            self.__cur.execute("SELECT * FROM users WHERE email = ? LIMIT 1", [email])
             res = self.__cur.fetchone()
             if not res:
                 print("Пользователь не найден")
