@@ -1,0 +1,78 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: Roboto;
+    font-style: normal;
+    background: #f6ffff;
+}
+
+.dirlist_header_row, .dirlist_row {
+    display: grid;
+    grid-template-rows: repeat(auto-fill, 100%);
+    grid-template-columns: min-content min-content auto
+}
+
+.dirlist_header {
+    box-sizing: border-box;
+    /* border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 3px solid black;
+    border-collapse: separate; */
+}
+
+.dirlist_header.first {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.dirlist_header_row {
+    font-size: 20px;
+    text-align: center;
+    font-weight: 100;
+    color:rgb(150, 150, 150);
+    /* border-bottom: 1px solid black; */
+}
+
+.dirlist_row {
+    margin: 15px 10px;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+.dir_link:link {
+    text-decoration: none;
+}
+
+.dirlist_row:hover {
+    background-color: rgb(255, 255, 112);
+}
+
+.head{
+    font-size: 30px;
+    text-align: left;
+    height: 10%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.up_button {
+    width: 30px;
+    height: 30px;
+}
+
+
+.dirlist_type, .dirlist_size, .dirlist_name {
+    text-align: center;
+    color: black;
+    text-decoration: none;
+    font-size: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.dirlist_name {
+    margin-left: 10px;
+}
