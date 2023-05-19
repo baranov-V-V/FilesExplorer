@@ -136,8 +136,7 @@ def login():
 @app.route("/register", methods=["POST", "GET"])
 def register():
     if request.method == "POST":
-        if len(request.form['name']) > 4 and len(request.form['email']) > 4 \
-            and len(request.form['psw']) > 4 and request.form['psw'] == request.form['psw2']:
+        if request.form['psw'] == request.form['psw2']:
             hash = generate_password_hash(request.form['psw'])
             res = dbase.addUser(request.form['name'], request.form['email'], hash)
             if res:
