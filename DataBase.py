@@ -74,7 +74,7 @@ class AppDataBase:
                 return False
 
             tm = math.floor(time.time())
-            self.__cur.execute("INSERT INTO users VALUES(NULL, ?, ?, ?, NULL, ?)", (name, email, hpsw, tm))
+            self.__cur.execute("INSERT INTO users VALUES(NULL, ?, ?, ?, ?)", (name, email, hpsw, tm))
             self.__db.commit()
         except sqlite3.Error as e:
             print("Ошибка добавления пользователя в БД "+str(e))
@@ -92,7 +92,7 @@ class AppDataBase:
 
             return res
         except sqlite3.Error as e:
-            print("Ошибка получения данных из БД "+str(e))
+            print("Ошибка получения данных из БД " + str(e))
 
         return False
 
@@ -106,7 +106,7 @@ class AppDataBase:
 
             return res
         except sqlite3.Error as e:
-            print("Ошибка получения данных из БД "+str(e))
+            print("Ошибка получения данных из БД " + str(e))
 
         return False
 
