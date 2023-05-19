@@ -64,8 +64,8 @@ body{
 }
 
 
-.dirlist_type, .dirlist_size, .dirlist_name {
-    text-align: center;
+.dirlist_type, .dirlist_name {
+    text-align: left;
     color: black;
     text-decoration: none;
     font-size: 20px;
