@@ -31,7 +31,6 @@ login_manager.login_view = 'login'
 login_manager.login_message = "Авторизуйтесь для доступа к закрытым страницам"
 login_manager.login_message_category = "success"
 
-
 @login_manager.user_loader
 def load_user(user_id):
     print("load_user")
@@ -79,22 +78,31 @@ def index():
     return render_template('index.html', menu=dbase.getMenu(), posts=dbase.getPostsAnonce())
 """
 
-"""
-@app.route("/add_post", methods=["POST", "GET"])
+
+#Добавить обработчик
+@app.route("/add_file", methods=["POST", "GET"])
+@login_required
 def addPost():
     if request.method == "POST":
-        if len(request.form['name']) > 4 and len(request.form['post']) > 10:
+        
+        if True: #len(request.form['name']) > 4 and len(request.form['post']) > 10:
+            """
             res = dbase.addPost(request.form['name'], request.form['post'], request.form['url'])
+            
             if not res:
                 flash('Ошибка добавления статьи', category = 'error')
             else:
                 flash('Статья добавлена успешно', category='success')
+            """
+            
+            flash('Файл добавлен успешно', category='success')
+            
         else:
-            flash('Ошибка добавления статьи', category='error')
+            flash('Ошибка добавления файла', category='error')
 
-    return render_template('add_post.html', menu = dbase.getMenu(), title="Добавление статьи")
+    return render_template('add_file.html', menu = dbase.getMenu(), title="Добавление Файла")
 
-
+"""
 @app.route("/post/<alias>")
 @login_required
 def showPost(alias):
@@ -103,6 +111,7 @@ def showPost(alias):
         abort(404)
 
     return render_template('post.html', menu=dbase.getMenu(), title=title, post=post)
+"""
 
 @app.route("/login", methods=["POST", "GET"])
 def login():
@@ -111,10 +120,12 @@ def login():
 
     if request.method == "POST":
         user = dbase.getUserByEmail(request.form['email'])
-        if user and check_password_hash(user['psw'], request.form['psw']):
+        if user and check_password_hash(user['password'], request.form['psw']):
             userlogin = UserLogin().create(user)
+            
             rm = True if request.form.get('remainme') else False
             login_user(userlogin, remember=rm)
+            
             return redirect(request.args.get("next") or url_for("profile"))
 
         flash("Неверная пара логин/пароль", "error")
@@ -152,7 +163,7 @@ def logout():
 def profile():
     return render_template("profile.html", menu=dbase.getMenu(), title="Профиль")
 
-
+"""
 @app.route('/userava')
 @login_required
 def userava():
