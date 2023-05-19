@@ -66,8 +66,8 @@ div.content {
 
 ul.list-posts {
 	list-style: none;
-	margin: 0;
-	padding: 0;
+	margin: 20;
+	padding-bottom: 20;
 	max-width: 600px;
 }
 ul.list-posts li {
@@ -84,25 +84,34 @@ ul.list-posts .annonce {
 	padding: 10px 5px 10px 5px;
 }
 
-.profile-ava {
-	width: 130px;
-	text-align: center;
-	overflow: hidden; 
-	background: #eee;
-	padding: 10px;
-}
-.profile-ava img {max-width: 150px; height: auto;}
-
 .profile-load {
 	margin-top: 10px;
 	overflow: hidden;
-	max-width: 150px;
+	max-width: 300px;
 }
 .profile-load input[type=submit], input[type=file] {
-	width: 100%;
+	width: 50%;
 	font-size: 18px;
 }
 .profile-load p {
+	padding: 0;
+	margin: 5px 0 0 0;
+}
+
+.file-load {
+	margin-top: 10px;
+	overflow: hidden;
+	max-width: 300px;
+}
+.file-load input[type=file] {
+	width: 100%;
+	font-size: 18px;
+}
+.file-load input[type=submit], input[type=file] {
+	width: 50%;
+	font-size: 18px;
+}
+.file-load p {
 	padding: 0;
 	margin: 5px 0 0 0;
 }
@@ -177,8 +186,10 @@ ul.profile-info li {margin-top: 10px;}
   font-size: 20px;
   padding-top: 10px;
   padding-bottom: 10px;
+  white-space: nowrap;
 }
 
 .dirlist_name {
   margin-left: 10px;
+  white-space: nowrap;
 }

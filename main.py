@@ -71,34 +71,20 @@ def close_db(error):
     if hasattr(g, 'link_db'):
         g.link_db.close()
 
-
-"""
-@app.route("/")
-def index():
-    return render_template('index.html', menu=dbase.getMenu(), posts=dbase.getPostsAnonce())
-"""
-
-
 #Добавить обработчик
 @app.route("/add_file", methods=["POST", "GET"])
 @login_required
 def addPost():
     if request.method == "POST":
-        
-        if True: #len(request.form['name']) > 4 and len(request.form['post']) > 10:
-            """
-            res = dbase.addPost(request.form['name'], request.form['post'], request.form['url'])
-            
-            if not res:
-                flash('Ошибка добавления статьи', category = 'error')
-            else:
-                flash('Статья добавлена успешно', category='success')
-            """
-            
+        file = request.files['file']
+        if file:
+            try:
+                file.save(request.form['path'] + "/" + file.filename)
+            except ... as e:
+                flash("Ошибка сохранения файла", "error")
             flash('Файл добавлен успешно', category='success')
-            
         else:
-            flash('Ошибка добавления файла', category='error')
+            flash("Нет файла в форме", "error")
 
     return render_template('add_file.html', menu = dbase.getMenu(), title="Добавление Файла")
 
