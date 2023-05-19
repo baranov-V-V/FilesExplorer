@@ -11,6 +11,10 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from UserLogin import UserLogin
 
+from pygments import highlight
+from pygments.lexers import guess_lexer_for_filename
+from pygments.formatters import HtmlFormatter
+
 # конфигурация
 DATABASE = '/explorer.db'
 DEBUG = True
@@ -204,11 +208,15 @@ def root_dir1():
 
 def file_menu(file_path : str):
     ext = file_path.split('.')[-1]
+    print('wtf', file_path)
+    exts = ['h', 'hpp', 'c', 'cpp', 'html', 'css', 'py', 'sh']
+    fd = os.open(file_path, flags=os.O_RDONLY)
+    content = (os.read(fd, 100000)).decode()
+    if exts.count(ext) > 0:
+
+        return highlight(content, guess_lexer_for_filename(file_path, content), HtmlFormatter(linenos=True, noclasses=True))
     
-    if ext == 'h' or ext == 'cpp':
-        return "PIZDEC SUDA NAXYI"
-    
-    return "Can't display file content..."
+    return render_template('file_view.html', content=content)
 
 @app.route("/explorer/<path:subpath>")
 def subdir(subpath : str):
