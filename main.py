@@ -219,7 +219,7 @@ def root_dir1():
 
 def file_menu(file_path : str):
     ext = file_path.split('.')[-1]
-    print('wtf', file_path)
+    print('Opening file menu. Path =', file_path)
     exts = ['h', 'hpp', 'c', 'cpp', 'html', 'css', 'py', 'sh']
     fd = os.open(file_path, flags=os.O_RDONLY)
     content = (os.read(fd, 100000)).decode()
@@ -232,7 +232,7 @@ def file_menu(file_path : str):
 @app.route("/explorer/<path:subpath>")
 def subdir(subpath : str):
     realpath = '/' + subpath
-    print("!!!", realpath)
+    print("Explorer at path =", realpath)
 
     if (os.path.isfile("/"+subpath)):
         return file_menu("/"+subpath)
@@ -261,10 +261,7 @@ def subdir(subpath : str):
 
             i_params["href_path"] = "/explorer" + i_path
             subdirs.append(i_params)
-        print('bleat', subpath)
-        print(os.path.split(subpath))
-
-        # print("kek", '/' + (os.path.split(subpath)[0] if subpath.strip() else ""))
+        
         return render_template("index.html",
                                 curdir="/explorer/"+subpath.strip(),
                                 subdirs=subdirs, 
