@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="head">
+        {{curdir}}
+        <a href="{{up_dir}}"><img src="/static/up-circular-interface-button_icon-icons.com_73119.png" class="up_button"></a>
+    </div>
+    <div class="dirlist_table">
+        <div class="dirlist_header_row">
+            <div class="dirlist_header first">Type</div>
+            <div class="dirlist_header">Name</div>
+            <div class="dirlist_header">Size</div>
+        </div>
+        {% for subdir in subdirs %}
+        <a href="{{subdir.href_path}}" class="dir_link">
+        <div class="dirlist_row">
+            <div class="dirlist_type first"><img src="{{subdir.type_icon}}" alt="{{subdir.type}}"></div>
+            <div class="dirlist_name">{{subdir.name}}</div>
+            <div class="dirlist_size">{{subdir.size}}</div>
+        </div>
+        </a>
+        {% endfor %}
+    </div>
+</body>
+</html>
